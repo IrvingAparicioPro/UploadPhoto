@@ -2,35 +2,49 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row mt-3">
-                <h5 class="display-5" id="lblPhoto">Select a photo</h5>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" accept="image/png, image/jpeg">
-                        <label class="custom-file-label">Choose file</label>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true);
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="id">Name:</label>
+                        <input type="text" class="form-control" id="id">
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="container text-center">
-                    <button type="button" class="btn btn-primary" id="upload">Upload!</button>
+                <div class="row mt-3">
+                    <h5 class="display-5" id="lblPhoto">Select a photo</h5>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="file" accept="image/png, image/jpeg">
+                            <label class="custom-file-label">Choose file</label>
+                        </div>
+                    </div>
                 </div>
-                <i class="far fa-check-circle mb-md-4" id="succesful"> Succesful</i>
-                <i class="fas fa-times mb-md-4" id="error"> Error</i>
+                <div class="row mt-3">
+                    <div class="container text-center">
+                        <button type="button" class="btn btn-outline-primary" id="upload">
+                            <i class="fa fa-cloud-upload"></i> Upload!
+                        </button>
+                    </div>
+                    <i class="far fa-check-circle mb-md-4" id="succesful"> Succesful</i>
+                    <i class="fas fa-times mb-md-4" id="error"> Error</i>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="~/Content/images/layout_photo.png" class="card-img-top" alt="" id="picture">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Professional Portfolio Name </p>
-                    <a href="#" class="btn btn-primary">Github Profile</a>
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/Content/images/layout_photo.png" class="card-img-top" alt="" id="picture">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Name</h5>
+                        <p class="card-text">Professional Portfolio Name </p>
+                        <a href="#" class="btn btn-outline-dark"><i class="fa fa-github"></i> Github Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
