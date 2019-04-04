@@ -9,22 +9,34 @@ namespace UploadPhoto.Controllers
 {
     public class HomeController : Controller
     {
+        //VARIABLES
         Profile profileO;
+        List<Profile> profileList;
+
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase photo, string profileID)
+        public ActionResult Index(string profilePersonalID, HttpPostedFileBase photo)
         {
             profileO = new Profile();
+            profileList = new List<Profile>();
 
-            List<Profile> profileList = new List<Profile>();
+            profileList.ToList();
 
-
-
-            return View();
+            foreach (var profL in profileList)
+            {
+                if (profL.personalId == profilePersonalID)
+                {
+                    profileO.name = profL.name;
+                    profileO.Profession = profL.Profession;
+                    profileO.photo = profL.photo;
+                }
+                return View();
+            }
+            return View(profileO);
         }
     }
 }
