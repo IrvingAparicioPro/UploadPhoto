@@ -1,0 +1,70 @@
+﻿@model UploadPhoto.Models.Profile
+
+
+<div class="container">
+    <div class="row">
+        @using (Html.BeginForm("Creating", "Home", FormMethod.Post, new { @class = "w-100" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h4>Create a Profile</h4>
+            <hr />
+            <!--PERSONAL ID-->
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h6 class="display-5">Personal ID</h6>
+                <div class="col">
+                    @Html.EditorFor(model => model.personalId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.personalId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!--NAME-->
+            <div class="form-group">
+                <h6 class="display-5">Name</h6>
+                <div class="col">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!--PREFESSION ID-->
+            <div class="form-group">
+                <h6 class="display-5">Profession</h6>
+                <div class="col">
+                    @try
+                    {
+                        <select class="custom-select">
+                            <option selected>Choose...</option>
+                            <option value="Engineer">Engineer</option>
+                            <option value="Developer">Developer</option>
+                        </select>
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                </div>
+            </div>
+            <!--PHOTO-->
+            <div class="form-group">
+                <h6 class="display-5" id="lblPhoto">Select a photo</h6>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file" accept="image/*" name="photo">
+                        <label class="custom-file-label">Choose a photo</label>
+                    </div>
+                </div>
+                @Html.EditorFor(model => model.photo)
+            </div>
+            
+            <div class="form-group">
+                <div class="col form-group d-flex justify-content-center">
+                    <!--CREATE-->
+                    <input type="submit" value="Create" class="btn btn-outline-info w-25 mr-3" />
+                    <!--BACK-->
+                    @Html.ActionLink("Back to List", "Index","Home",null, new { @class = "btn btn-outline-info w-25" })
+                </div>
+            </div>
+        }
+    </div>
+</div>

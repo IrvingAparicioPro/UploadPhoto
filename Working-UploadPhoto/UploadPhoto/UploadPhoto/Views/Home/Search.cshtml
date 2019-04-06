@@ -1,0 +1,45 @@
+﻿@model UploadPhoto.Models.Profile
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    @try
+                    {
+                        if (Model.photo == null | Model.photo.Equals(""))
+                        {
+                            <img src="~/Content/images/layout_photo.png" />
+                        }
+                        else
+                        {
+                            <img src="@Html.DisplayFor(model => model.photo)" />
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@Html.DisplayFor(model => model.name)</h5>
+                        <p class="card-text">@Html.DisplayFor(model => model.personalId) </p>
+                        <p class="card-text">@Html.DisplayFor(model => model.Profession.name) </p>
+                        <a href="#" class="btn btn-outline-dark"><i class="fa fa-github"></i> Github Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,48 +1,25 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div class="row">
-                    <div class="form-group w-100">
-                        <h5 for="id">Name</h5>
-                        <input type="text" class="form-control" accept="image/*" id="id" name="profilePersonalID">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <h5 class="display-5" id="lblPhoto">Select a photo</h5>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="file" accept="image/png, image/jpeg">
-                            <label class="custom-file-label">Choose file</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="container text-center">
-                        <button type="submit" class="btn btn-outline-primary" id="upload">
-                            <i class="fa fa-cloud-upload"></i> Upload!
-                        </button>
-                    </div>
-                    <i class="far fa-check-circle mb-md-4" id="succesful"> Succesful</i>
-                    <i class="fas fa-times mb-md-4" id="error"> Error</i>
-                </div>
-            }
+    @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <!--Search by ID-->
+            <div class="form-group w-100">
+                <h5 for="id">Personal Profile ID</h5>
+                <input type="text" class="form-control" id="id" name="profilePersonalID">
             </div>
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="~/Content/images/layout_photo.png" class="card-img-top" alt="" id="picture">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Name</h5>
-                    <p class="card-text">Professional Portfolio Name </p>
-                    <a href="#" class="btn btn-outline-dark"><i class="fa fa-github"></i> Github Profile</a>
-                </div>
+            <div class="row col">
+                <!--Search-->
+                <button type="submit" class="btn btn-outline-info m-auto w-25" id="Search"><i class="fa fa-search"></i> Search</button>
+                <!--Create-->
+                <a class="btn btn-outline-info m-auto w-25" id="Create" onclick="location.href='@Url.Action("Create","Home")'">
+                    <i class="fa fa-plus-circle"></i> Create
+                </a>
             </div>
         </div>
-    </div>
+    }
 </div>

@@ -9,9 +9,9 @@ namespace UploadPhoto.Controllers
 {
     public class HomeController : Controller
     {
-        //VARIABLES
-        Profile profileO;
-        List<Profile> profileList;
+        //INITIALIZATION
+        Profile ProfileO;
+        List<Profile> ProfileList;
 
         public ActionResult Index()
         {
@@ -19,24 +19,35 @@ namespace UploadPhoto.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string profilePersonalID, HttpPostedFileBase photo)
+        public ActionResult Search(string profilePersonalID)
         {
-            profileO = new Profile();
-            profileList = new List<Profile>();
+            ProfileO = new Profile();
+            ProfileList = new List<Profile>();
 
-            profileList.ToList();
+            ProfileList.ToList();
 
-            foreach (var profL in profileList)
+            foreach (var profL in ProfileList)
             {
                 if (profL.personalId == profilePersonalID)
                 {
-                    profileO.name = profL.name;
-                    profileO.Profession = profL.Profession;
-                    profileO.photo = profL.photo;
+                    ProfileO.name = profL.name;
+                    ProfileO.Profession = profL.Profession;
+                    ProfileO.photo = profL.photo;
                 }
                 return View();
             }
-            return View(profileO);
+            return View(ProfileO);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Creating(string personalId, string name, int professionId, HttpPostedFileBase photo)
+        {
+            return View();
         }
     }
 }
